@@ -1,17 +1,19 @@
-let token = () => '';
+import Option from "../models/Option.ts";
+
+let option: Option
 
 export default () => {
-    function setTokenMethod(method: () => ''): void {
-        token = method
+    function setOption(value: Option): void {
+        console.log('setted', value)
+        option = value
     }
 
-    function getToken(){
-        return token()
+    function getOption(): Option {
+        return option
     }
 
     return {
-        setTokenMethod,
-        getToken
+        getOption,
+        setOption
     }
-
 }

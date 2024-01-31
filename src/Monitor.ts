@@ -1,16 +1,25 @@
-import useToken from "./composeables/useOptions.ts";
-
-interface Options {
-    getToken: () => ''
-}
+import Option from "./models/Option.ts";
+import useOptions from "./composeables/useOptions.ts";
+import axios, {InternalAxiosRequestConfig} from "axios";
 
 export default {
-    install(app: any, options: Options) {
-        const {setTokenMethod} = useToken()
+    install(app: any, options: Option) {
+        const {setOption} = useOptions()
 
-        setTokenMethod(options.getToken)
+        setOption(options)
 
-        console.log('app', app.component)
-        console.log('options.getToken', options.getToken)
+        app.config.globalProperties.$http = axios.create({
+            baseURL: options.baseUrl
+        })
+
+        app.config.globalProperties.$http.interceptors.request.use(  async(config: InternalAxiosRequestConfig): Promise<InternalAxiosRequestConfig> => {
+            const token = await options.getToken();
+
+            if (token){
+                config.headers.set(`Authorization: Bearer ${token}`)
+            }
+
+            return config
+        })
     }
 };

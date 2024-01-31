@@ -1,14 +1,16 @@
 {
-  "name": "brian-component-lib",
+  "name": "monitor-lib",
   "version": "1.0.0",
   "type": "module",
-  "files": ["dist"],
-  "main": "./dist/brian-component-lib.umd.cjs",
-  "module": "./dist/brian-component-lib.js",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/monitor-lib.umd.cjs",
+  "module": "./dist/monitor-lib.js",
   "exports": {
     ".": {
-      "import": "./dist/brian-component-lib.js",
-      "require": "./dist/brian-component-lib.umd.cjs"
+      "import": "./dist/monitor-lib.js",
+      "require": "./dist/monitor-lib.umd.cjs"
     },
     "./style.css": "./dist/style.css"
   },
@@ -16,12 +18,13 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && vue-tsc --emitDeclarationOnly",
-    "types": "vue-tsc ",
+    "types": "vue-tsc --emitDeclarationOnly",
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.3.10",
-    "element-plus": "^2.4.3"
+    "axios": "^1.6.7",
+    "element-plus": "^2.5.3",
+    "vue": "^3.3.10"
   },
   "devDependencies": {
     "@types/node": "^20.2.5",

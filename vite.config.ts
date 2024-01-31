@@ -11,7 +11,7 @@ export default defineConfig({
       entry: resolve(__dirname, "src/index.ts"),
       name: "Monitor",
       // the proper extensions will be added
-      fileName: "monitor",
+      fileName: "monitor-lib",
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
