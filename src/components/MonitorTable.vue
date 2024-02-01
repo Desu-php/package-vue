@@ -1,9 +1,4 @@
 <script setup lang="ts">
-import {ElTable, ElTableColumn, ElButton, ElDialog} from "element-plus"
-import {onMounted} from "vue";
-import http from "../services/http.ts";
-import MonitorForm from "./MonitorForm.vue";
-
 const data = [
   {
     id: 1,
@@ -22,16 +17,14 @@ const data = [
   }
 ]
 
-// onMounted(() => {
-//   http().get('prices')
-// })
+const emit = defineEmits(['edit'])
 
+function onEdit(id: number) {
+  emit('edit', id)
+}
 </script>
 
 <template>
-  <div style="height: 100vh">
-    <MonitorForm />
-
     <el-table
         :data="data"
     >
@@ -44,15 +37,21 @@ const data = [
           {{ scope.row.id }}
         </template>
       </el-table-column>
+      <el-table-column prop="actions">
+        <template #default="scope">
+          <el-button text type="warning" @click="onEdit(scope.row.id)">Изменить</el-button>
+        </template>
+      </el-table-column>
     </el-table>
-  </div>
-
+    <div class="monitor-pagination">
+      <el-pagination layout="prev, pager, next" :total="1000" />
+    </div>
 </template>
 
 <style scoped>
-.align-right{
+.monitor-pagination{
   display: flex;
   justify-content: right;
-  margin-bottom: 10px;
+  margin-top: 10px;
 }
 </style>

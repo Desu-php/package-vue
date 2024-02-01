@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import MonitorTable from "./components/MonitorTable.vue";
+
+import MonitorList from "./components/MonitorList.vue";
 </script>
 
 <template>
-<MonitorTable />
+<monitor-list />
 </template>
 
 <style scoped>
